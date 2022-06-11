@@ -1,20 +1,33 @@
-drop database if exists employee_db;
-create database employee_db;
+DROP DATABASE IF EXISTS employee_db;
+CREATE DATABASE employee_db;
 
-use employee_db;
+USE employee_db;
 
-create table department (
-id int not null,
-employee_name varchar(30) not null,
-primary key (id)
+CREATE TABLE department (
+id INT PRIMARY KEY,
+name VARCCHAR(30)
 );
 
+CREATE TABLE role (
+    id INT PRIMARY KEY,
+    title VARCHAR(30),
+    salary DECIMAL,
+    department_id INT,
+    FOREIGN KEY (department_id)
+    REFERENCES department(id)
+);
 
-create table _role (
-    id int not null,
-    title varchar(30) not null,
-    salary decimal, 
-    department_id int not null,
-    foreign key (employee_id) references employee(id)
+CREATE TABLE employee (
+    id INT PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    role_id INT,
+    FOREIGN KEY (role_id)
+    REFERENCES role(id)
+    manager_id INT NULL,
+    FOREIGN KEY (manager_id)
+    REFERENCES employee(id)
+    ON DELETE CASCADE
 )
+
 
