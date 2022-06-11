@@ -38,4 +38,34 @@ function ReadyStart() {
             ]
         }
     ])
+    .then(res => {
+        let choice = res.choice;
+    // call function given user input
+    switch (choice) {
+        case "viewAllDepartments":
+          viewAllDepartments();
+          break;
+        case "viewAllRoles":
+          viewAllRoles();
+          break;
+        case "viewAllEmployees":
+          viewAllEmployees();
+          break;
+        case "addDepartment":
+          addDepartment();
+          break;
+        case "addRole":
+          addRole();
+          break;
+        case "addEmployee":
+          addEmployee();
+          break;
+        case "updateEmployeeRole":
+          updateEmployeeRole();
+          break;
+      }
+    }
+  )
 }
+
+ReadyStart()
